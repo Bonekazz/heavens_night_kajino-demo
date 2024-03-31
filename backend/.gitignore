@@ -5,3 +5,4 @@ node_modules
 makefile
 .notes.txt
 .eslintrc.json
+prisma/dev.db
