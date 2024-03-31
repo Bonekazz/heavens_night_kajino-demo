@@ -1,5 +1,6 @@
 import Express  from "express";
 import userController from "./modules/user/user.controller";
+import authController from "./modules/auth/auth.controller";
 
 const api = Express();
 api.use(Express.json());
@@ -8,7 +9,7 @@ api.get('/api', (request, response) => {
     return response.send({message: "good response"});
 });
 
-// api.post("api/login") login com autenticação
+api.post("/api/login", (request, response) => authController.login(request, response));
 
 // api.get("api/users") lista todos os users
 api.post("/api/users", (request, response) => userController.createUser(request, response)); // criar user
