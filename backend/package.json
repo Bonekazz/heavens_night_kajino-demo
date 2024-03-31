@@ -1,19 +1,28 @@
 {
-  "name": "coingame-backend",
+  "name": "coin-api",
   "version": "1.0.0",
   "description": "",
-  "scripts": {},
+  "scripts": {
+    "dev": "nodemon --exec ts-node-dev src/api.ts"
+  },
   "keywords": [],
   "author": "bonekazz",
   "license": "ISC",
   "devDependencies": {
+    "@types/express": "^4.17.21",
     "@types/node": "^20.12.2",
+    "@typescript-eslint/eslint-plugin": "^7.4.0",
+    "@typescript-eslint/parser": "^7.4.0",
+    "eslint": "^8.57.0",
     "nodemon": "^3.1.0",
     "prisma": "^5.11.0",
     "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
     "typescript": "^5.4.3"
   },
   "dependencies": {
-    "@prisma/client": "^5.11.0"
+    "@prisma/client": "^5.11.0",
+    "express": "^4.19.2",
+    "uuid": "^9.0.1"
   }
 }
