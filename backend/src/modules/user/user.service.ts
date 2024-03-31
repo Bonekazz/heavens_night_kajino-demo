@@ -26,6 +26,6 @@ export class UserService {
 
         await this.prisma.$disconnect();
 
-        return newUser;
+        return {message: "user created with sucess!"};
     }
 }
