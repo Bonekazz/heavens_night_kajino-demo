@@ -1,0 +1,1 @@
+export const SECRET_KEY = "desafio_programador_python";
