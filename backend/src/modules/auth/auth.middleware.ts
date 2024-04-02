@@ -17,16 +17,12 @@ export function AuthMiddleware(
 ){
 
     const token = request.headers.authorization.split(" ")[1];
-    console.log(token);
 
     try {
 
         const decoded = verify(token, SECRET_KEY);
         const {id} = decoded as JwtPayload;
         
-        console.log(decoded as JwtPayload);
-        console.log(id);
-
         request.userId = id;
         next();
         
