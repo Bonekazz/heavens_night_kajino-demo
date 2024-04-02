@@ -4,10 +4,16 @@ export class RoomService {
     constructor(private prisma: PrismaClient) {}
 
     async list() {
-
-        const rooms = await this.prisma.room.findMany();
-        console.log(rooms);
-        return {rooms};
+        
+        try {
+            const rooms = await this.prisma.room.findMany(); 
+            return {rooms};
+        } catch (error) {
+            return {error: error};
+        } finally {
+           await this.prisma.$disconnect();
+        }
+        
 
     }
 }
