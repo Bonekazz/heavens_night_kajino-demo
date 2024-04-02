@@ -20,13 +20,11 @@ export class UserService {
 
         const newUser = await this.prisma.user.create({
             data: {
-                id: undefined,
                 name: name,
                 pass: hashedpass,
                 coins: 200,
                 tickets: 10,
                 fingers: 10,
-                createdAt: undefined,
             },
         });
 
