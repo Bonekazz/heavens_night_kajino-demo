@@ -14,6 +14,8 @@ export class AuthService {
             }
         });
 
+        await this.prisma.$disconnect();
+
         if(!user) return {message: "user dont exist!"};
 
         const isSamePass = await compare(password, user.pass);
@@ -21,7 +23,7 @@ export class AuthService {
 
         const token = sign({id: user.id}, SECRET_KEY, {expiresIn: "1d"});
 
-        return {message: "logged with success!", data: {username: user.name, token: token}};
+        return {message: "logged with success!", data: {username: user.name, userId: user.id, token: token}};
         
     }
 }
