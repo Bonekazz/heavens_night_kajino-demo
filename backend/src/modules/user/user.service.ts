@@ -2,10 +2,12 @@ import { PrismaClient } from "@prisma/client";
 import { hash } from "bcryptjs";
 import { sign } from "jsonwebtoken";
 
+import { SECRET_KEY } from "../../config/config";
+
 export class UserService {
     constructor(private prisma: PrismaClient) {}
 
-    async create({id, name, pass, coins, tickets}) {
+    async create({name, pass}) {
         const userExist = await this.prisma.user.findUnique({
             where: {
                 name: name
@@ -16,20 +18,21 @@ export class UserService {
 
         const hashedpass = await hash(pass, 8);
 
-        await this.prisma.user.create({
+        const newUser = await this.prisma.user.create({
             data: {
-                id: id,
+                id: undefined,
                 name: name,
                 pass: hashedpass,
-                coins: coins,
-                tickets: tickets,
+                coins: 200,
+                tickets: 10,
+                fingers: 10,
                 createdAt: undefined,
             },
         });
 
         await this.prisma.$disconnect();
 
-        const token = sign({id: id}, "secret-key", {expiresIn: "1d"});
+        const token = sign({id: newUser.id}, SECRET_KEY, {expiresIn: "1d"});
         return {message: "user created with sucess!", data: {username: name, token: token}};
     }
 }
