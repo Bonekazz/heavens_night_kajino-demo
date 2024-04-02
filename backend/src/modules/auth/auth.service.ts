@@ -1,5 +1,7 @@
 import { PrismaClient } from "@prisma/client";
-import { userDTO } from "../user/user.dto";
+import { compare } from "bcryptjs";
+import { sign } from "jsonwebtoken";
+import { SECRET_KEY } from "../../config/config";
 
 export class AuthService {
     constructor(private prisma: PrismaClient) {}
@@ -13,9 +15,13 @@ export class AuthService {
         });
 
         if(!user) return {message: "user dont exist!"};
-        if(user.pass !== password) return {message: "invalid password"};
 
-        return {message: "logged with success!"};
+        const isSamePass = await compare(password, user.pass);
+        if(!isSamePass) return {message: "invalid password"};
+
+        const token = sign({id: user.id}, SECRET_KEY, {expiresIn: "1d"});
+
+        return {message: "logged with success!", data: {username: user.name, token: token}};
         
     }
 }
