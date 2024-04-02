@@ -16,7 +16,8 @@ export function AuthMiddleware(
     next: NextFunction
 ){
 
-    const token = request.headers.authorization.split(" ")[1];
+    const token = request.headers.authorization.split(" ")[1] ;
+    if(!token) return response.json({error: "token not provided"});
 
     try {
 
@@ -30,7 +31,7 @@ export function AuthMiddleware(
         return response.status(401).json({error: error});
     }
     
-    if(!token) return response.json({messagem: "you dont have authorization to access this route"});
+    
 
 
 }
