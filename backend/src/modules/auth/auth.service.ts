@@ -23,7 +23,16 @@ export class AuthService {
 
         const token = sign({id: user.id}, SECRET_KEY, {expiresIn: "1d"});
 
-        return {sucess: true, message: "logged with success!", token: token};
+        return {
+            success: true, 
+            message: "logged with success!", 
+            token: token, 
+            user: {
+                username: user.name,
+                coins: user.coins,
+                tickets: user.tickets,
+                fingers: user.fingers,
+            }};
         
     }
 }
