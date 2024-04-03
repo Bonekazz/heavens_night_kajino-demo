@@ -13,7 +13,12 @@ class UserController {
             pass: password,
         };
 
-        return response.json(await this.userService.create(data));
+        const serviceRes = await this.userService.create(data);
+
+        if(!serviceRes.success) return response.status(401).json(serviceRes);
+        return response.status(200)
+            .cookie("heavensNightKajinoToken", serviceRes.token, {httpOnly: true, sameSite: "none", secure: true})
+            .json({success: true, user: serviceRes.user});
     }
 }
 
