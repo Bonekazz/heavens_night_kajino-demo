@@ -19,7 +19,7 @@ class AuthController {
         return response
                 .status(200)
                 .cookie("heavensNightKajinoToken", serviceRes.token, {httpOnly: true, sameSite: "none", secure: true})
-                .json({success: serviceRes, message: serviceRes.message});
+                .json({success: serviceRes.success, message: serviceRes.message, user: serviceRes.user});
         
     }
 }
