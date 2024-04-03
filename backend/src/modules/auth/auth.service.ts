@@ -2,7 +2,6 @@ import { PrismaClient } from "@prisma/client";
 import { compare } from "bcryptjs";
 import { sign } from "jsonwebtoken";
 import { SECRET_KEY } from "../../config/config";
-import { Response } from "express";
 
 export class AuthService {
     constructor(private prisma: PrismaClient) {}
