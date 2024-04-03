@@ -14,7 +14,7 @@ export class UserService {
             }
         });
 
-        if(userExist) return {message: "this username is already taken!"};
+        if(userExist) return {success: false, message: "this username is already taken!"};
 
         const hashedpass = await hash(pass, 8);
 
@@ -31,6 +31,14 @@ export class UserService {
         await this.prisma.$disconnect();
 
         const token = sign({id: newUser.id}, SECRET_KEY, {expiresIn: "1d"});
-        return {message: "user created with sucess!", data: {username: name, token: token}};
+        return {
+            success: true, 
+            message: "user created with sucess!", 
+            token: token, user: {
+            username: name,
+            coins: 200,
+            tickets: 10,
+            fingers: 10
+        }};
     }
 }
