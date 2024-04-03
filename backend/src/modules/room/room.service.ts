@@ -7,9 +7,9 @@ export class RoomService {
         
         try {
             const rooms = await this.prisma.room.findMany(); 
-            return {rooms};
+            return {success: true, rooms: rooms};
         } catch (error) {
-            return {error: error};
+            return {success: false, message: error};
         } finally {
            await this.prisma.$disconnect();
         }
