@@ -16,8 +16,8 @@ export function AuthMiddleware(
     next: NextFunction
 ){
 
-    const token = request.headers.authorization.split(" ")[1] ;
-    if(!token) return response.json({error: "token not provided"});
+    const token = request.cookies.heavensNightKajinoToken;
+    if(!token) return response.json({success: false, message: "token not provided", redirect: `http://localhost:5173/pages/login?next=${request.get('Referer')}`});
 
     try {
 
