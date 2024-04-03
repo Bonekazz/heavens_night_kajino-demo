@@ -1,11 +1,19 @@
 import Express  from "express";
+import cors from "cors";
+import cookieParser from "cookie-parser";
+
 import userController from "./modules/user/user.controller";
 import authController from "./modules/auth/auth.controller";
 import { AuthMiddleware } from "./modules/auth/auth.middleware";
 import roomController from "./modules/room/room.controller";
 import bonusController from "./modules/bonus/bonus.controller";
+import {serverlog} from "./utils/colored_logs";
+import { CORS_CONFIG } from "./config/config";
+
 
 const api = Express();
+api.use(cors(CORS_CONFIG));
+api.use(cookieParser());
 api.use(Express.json());
 
 api.post("/api/login", 
@@ -40,12 +48,14 @@ api.post("/api/claimBonus",
 // api.post("/api/bets") 
 // api.get("/api/bets") + query params para filtros
 
-api.listen(3000, () => {
-    console.log("server running on: http://localhost:3000");
-    // console.log("[SERVER]: Executing shecdules ...")
-    // try {
-        // shell.execute(cronjob)
-    // } catch (error) {
-        // console.log(`[ERROR]: ${error}`)
-    // }
+const server = api.listen(3000, () => {
+    serverlog("Server running on: http://localhost:3000");
+});
+
+process.on("SIGINT", () => {    // Interrupção de programa (CTRL + C)
+    console.log("\n");
+    server.close(() => {
+        serverlog("Server Closed.");
+        process.exit(); // Saindo do processo Node.js
+    });
 });
