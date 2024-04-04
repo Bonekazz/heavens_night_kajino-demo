@@ -1,8 +1,7 @@
 import { Request, Response } from "express";
 import { AuthService } from "./auth.service";
-import { prisma } from "../../database/prisma.service";
 
-class AuthController {
+export class AuthController {
     constructor(private authService: AuthService) {}
 
     async login(request: Request, response: Response) {
@@ -11,17 +10,19 @@ class AuthController {
 
         if(!username || !password) return response.json({error: "parametros invalidos (undefined)"});
 
-        const serviceRes = await this.authService.authenticate({username, password});
+        const user = await this.authService.authenticate({username, password});
 
-        if(!serviceRes.sucess) return response.status(401).json(serviceRes);
+        if(!user.found || user.permission === "denied") return response.status(401).json(user);
 
-        console.log("cookie adicionado ao client");
         return response
                 .status(200)
-                .cookie("heavensNightKajinoToken", serviceRes.token, {httpOnly: true, sameSite: "none", secure: true})
-                .json({success: serviceRes.success, message: serviceRes.message, user: serviceRes.user});
+                .cookie("heavensNightKajinoToken", user.token, {httpOnly: true, sameSite: "none", secure: true})
+                .json({
+                    permission: user.permission, 
+                    cookie: "set",
+                    message: user.message, 
+                    userData: user.data,
+                });
         
     }
 }
-
-export default new AuthController(new AuthService(prisma));
