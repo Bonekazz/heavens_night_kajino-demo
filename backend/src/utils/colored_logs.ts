@@ -10,5 +10,5 @@ export function errorlog(text: string){
 }
 
 export function schedlog(text: string){
-    logger.color("white").bgColor("blue").bold().log(`[schedule]: ${text}`);
+    logger.color("white").bgColor("cyan").bold().log(`[schedule]${text}`);
 }
