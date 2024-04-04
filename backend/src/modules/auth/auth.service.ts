@@ -16,23 +16,26 @@ export class AuthService {
 
         await this.prisma.$disconnect();
 
-        if(!user) return {sucess: false, message: "user dont exist!"};
+        if(!user) return {found: false, message: "user dont exist!"};
 
         const isSamePass = await compare(password, user.pass);
-        if(!isSamePass) return {sucess: false, message: "invalid password"};
+        if(!isSamePass) return {permission: "denied", message: "invalid password"};
 
         const token = sign({id: user.id}, SECRET_KEY, {expiresIn: "1d"});
 
         return {
-            success: true, 
-            message: "logged with success!", 
+            found: true, 
+            permission: "accepted",
+            message: "logged in with success!", 
             token: token, 
-            user: {
+            data: {
+                id: user.id,
                 username: user.name,
                 coins: user.coins,
                 tickets: user.tickets,
                 fingers: user.fingers,
-            }};
+            }   
+        };
         
     }
 }
