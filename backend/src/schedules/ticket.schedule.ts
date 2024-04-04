@@ -21,31 +21,28 @@ function steps(x: number) {
 }
 
 const interval = steps(10);
-
-schedlog("running schedule ...");
-schedule.scheduleJob({minute: interval, second: 0}, async () => {
-    try {
-        await prisma.user.updateMany({
-            data: {
-                tickets: {
-                    increment: 10,
-                }
+export const ticketSchedule = {
+    run: () => {
+        schedlog("-[ticket] running schedule (in the server's process)");
+        schedule.scheduleJob({minute: interval, second: 0}, async () => {
+            try {
+                await prisma.user.updateMany({
+                    data: {
+                        tickets: {
+                            increment: 10,
+                        }
+                    }
+                });
+            } catch (error) {
+                errorlog(error);
+            } finally {
+                await prisma.$disconnect();
+                schedlog(`10 tickets foram dados a todos os usuarios ...`);
             }
         });
-    } catch (error) {
-        errorlog(error);
-    } finally {
-        await prisma.$disconnect();
-        schedlog(`10 tickets foram dados a todos os usuarios ...`);
-    }
-});
+    },
 
-process.on("SIGINT", () => {
-    console.log("\n");
-    schedlog("closing schedule...");
-    schedule.gracefulShutdown().then(() => {
-        schedlog("all schedules closed.");
-        process.exit();
-    });
-    
-});
+    stop: () => {
+        schedlog("[ticket] schedule closed.");
+    }
+};
