@@ -1,8 +1,7 @@
 import { Request, Response } from "express";
 import { UserService } from "./user.service";
-import { prisma } from "../../database/prisma.service";
 
-class UserController {
+export class UserController {
     constructor(private userService: UserService){}
 
     async createUser(request: Request, response: Response) {
@@ -20,6 +19,18 @@ class UserController {
             .cookie("heavensNightKajinoToken", serviceRes.token, {httpOnly: true, sameSite: "none", secure: true})
             .json({success: true, user: serviceRes.user});
     }
-}
 
-export default new UserController(new UserService(prisma));
+    async getBalance(id: string) {
+
+        return await this.userService.balance(id);
+    }
+
+    async decrementBalance(id:string, value: number) {
+        return await this.userService.decrementBalance(id, value);
+    }
+
+    async incrementBalance(id:string, value: number) {
+        return await this.userService.incrementBalance(id, value);
+    }
+
+}
