@@ -1,15 +1,84 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/src/style.css">
-    <script type="module" defer src="/src/main.ts"></script>
-    <title>Heaven's Night | Kajino</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <a class="cursor-pointer" href="/login/">link</a>
-  </body>
+<!DOCTYPE html>
+<html lang="pt-br" class="text-white h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="src/style.css">
+    <title>Document</title>
+</head>
+<body class="bg-black h-full">
+    <header class="w-full flex justify-start p-2 items-center">
+        <div id="div-user-info" class="flex gap-2 items-center">
+            <p class="text-sm text-white">bonekazz@server:~</p>
+            <div id="div-user-bag" class="flex gap-2">
+                <p class="text-amber-500 text-sm font-bold">200</p>
+                <p class="text-red-700 text-sm font-bold">20</p>
+                <p class="text-sm font-bold text-white">10</p>
+            </div>
+            <p class="ml-2">|</p>
+            <p class="animated-button text-sm cursor-pointer ml-2 font-bold">logout</p>
+        </div>
+    </header>
+    <main class="flex flex-col items-center h-[90%]">
+        <header class="flex flex-col items-center">
+            <h2 class="text-2xl text-white">Welcome to</h2>
+            <h1 class="text-5xl font-bold text-white">Heaven's Night Kajino</h1>
+        </header>
+        <div id="wraper-games-chat" class="w-full h-full flex justify-center gap-8 pt-[4em] px-8">
+            <div id="div-games" class="w-[70%]">
+                <div class="border">
+                    <h1 class="pl-5 py-[1.5px] font-thin">rooms available</h1>
+                </div>
+                <div>
+                    <h1 class="text-lg border-x border-b p-5 font-bold">~/heads or tails</h1>
+                    <div id="room-div" class="border-b">
+                        <div class="border-x p-2 px-8 cursor-pointer">
+                            <div id="room-title-div" class="flex gap-2">
+                                <h1 class="">/room-#1</h1>
+                                <button class="animated-button font-bold text-sm ">entrar</button>
+                            </div>
+                            <div class="flex justify-between text-[12px] italic pt-2">
+                                <p>playing-now: 0</p>
+                                <div class="flex gap-4  justify-end">
+                                    <p>min-bet: <strong>200</strong></p>
+                                    <p>max-players: 5</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="room-div" class="border-b">
+                        <div class="border-x p-2 px-8 cursor-pointer">
+                            <div id="room-title-div" class="flex gap-2">
+                                <h1 class="">/room-#2</h1>
+                                <button class="animated-button font-bold text-sm">entrar</button>
+                            </div>
+                            <div class="flex justify-between text-[12px] italic pt-2">
+                                <p>playing-now: 0</p>
+                                <div class="flex gap-4  justify-end">
+                                    <p>min-bet: <strong>500</strong></p>
+                                    <p>max-players: 5</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="room-div" class="border-b">
+                        <div class="border-x p-2 px-8 cursor-pointer">
+                            <div id="room-title-div" class="flex gap-2">
+                                <h1 class="">/room-#3</h1>
+                                <button class="animated-button font-bold text-sm ">entrar</button>
+                            </div>
+                            <div class="flex justify-between text-[12px] italic pt-2">
+                                <p>playing-now: 0</p>
+                                <div class="flex gap-4  justify-end">
+                                    <p>min-bet: <strong>800</strong></p>
+                                    <p>max-players: 5</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
 </html>
