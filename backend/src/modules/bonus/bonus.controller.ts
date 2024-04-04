@@ -1,8 +1,7 @@
 import { Request, Response } from "express";
 import { BonusService } from "./bonus.service";
-import { prisma } from "../../database/prisma.service";
 
-class BonusController {
+export class BonusController {
     constructor(private bonusService: BonusService) {}
 
     async claimBonus(request: Request, response: Response) {
@@ -14,5 +13,3 @@ class BonusController {
     }
 
 }
-
-export default new BonusController(new BonusService(prisma));
