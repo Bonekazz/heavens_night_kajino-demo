@@ -41,4 +41,52 @@ export class UserService {
             fingers: 10
         }};
     }
+
+    async balance(id: string) {
+        const userexist = await this.prisma.user.findFirst({
+            where: {
+                id: id
+            }
+        });
+
+        if(!userexist) return {found: false, message: "user dont exist"};
+
+        await this.prisma.$disconnect();
+
+        return {found: true, message: "user found!", balance: userexist.coins};
+    }
+
+    async decrementBalance(id:string, value: number) {
+        const userexist = await this.prisma.user.update({
+            where: {id: id,},
+            data: {
+                coins: {
+                    decrement: value,
+                }
+            }
+        });
+
+        await this.prisma.$disconnect();
+
+        if(!userexist) return {error: true, message: "user not found"};
+
+        return {error: false, message: "balance decremented with success", currentBalance: userexist.coins};
+    }
+
+    async incrementBalance(id:string, value: number) {
+        const userexist = await this.prisma.user.update({
+            where: {id: id,},
+            data: {
+                coins: {
+                    increment: value,
+                }
+            }
+        });
+
+        await this.prisma.$disconnect();
+
+        if(!userexist) return {error: true, message: "user not found"};
+
+        return {error: false, message: "balance increment with success", currentBalance: userexist.coins};
+    }
 }
