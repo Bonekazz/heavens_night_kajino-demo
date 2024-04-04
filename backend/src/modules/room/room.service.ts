@@ -16,4 +16,19 @@ export class RoomService {
         
 
     }
+
+    async getRoom(id: string) {
+        const roomExist = await this.prisma.room.findFirst({
+            where: {
+                id: id
+            }
+        });
+
+        if(!roomExist) return {found: false, message: "room dont exist"};
+
+        await this.prisma.$disconnect();
+
+        return {found: true, data: roomExist, message: "room found"};
+
+    }
 }
