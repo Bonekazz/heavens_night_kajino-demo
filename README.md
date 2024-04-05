@@ -6,8 +6,6 @@
   - [requisitos](#requisitos)
 #### [instalação:](#installation)
   - [backend](#backend)
-      - [windows](#backend-windows)
-      - [linux](#backend-linux)
 
 
 
@@ -20,34 +18,36 @@ ___
 
 <a id="installation"></a>
 ## Installation
-Clone a pasta repositorio em algum diretório na sua maquina
+Clone a pasta do repositorio para algum diretório na sua maquina
 ```bash
 git clone https://github.com/Bonekazz/heavens_night_kajino-demo.git
 cd heavens_night_kajino-demo/
 ```
 <a id="backend"></a>
-### backend
+### Backend
+#### \#1 instale as dependências 
 ```bash
 cd backend
 npm i
 ```
-### Build e Start
-<a id="backend-windows"></a>
-- windows
+#### \#2 build e start a api
+para windows:
 ```bash
 npm run build:windows
 npm run start
 ```
-  Se tiver o programa make, você pode apenas dar o comando `make bsw` para economizar teclas
-  ```bash
-  make bsw
-  ```
-<a id="backend-linux"></a>
-- Linux
+
+para Linux:
 ```bash
 npm run build:linux
 npm run start
 ```
-  Se tiver o programa make, você pode apenas dar o comando `make bsw` para economizar teclas
-  ```bash
-  make bsl
+> [!TIP]
+> Se tiver o programa make instalado, você pode dar o comando `make` para economizar teclas no build e start
+> ```bash
+> #para windows
+> make bsw
+> 
+> # para linux
+> make bsl
+> ```
