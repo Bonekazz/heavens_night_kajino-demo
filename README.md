@@ -13,9 +13,12 @@
 
 
 ___
+<a id="requisitos"></a>
 ## Requisitos
-  - Node
-  - npm
+  - [Node (já vem com npm)](https://nodejs.org/en/download/current)
+    
+
+<a id="installation"></a>
 ## Installation
 Clone a pasta repositorio em algum diretório na sua maquina
 ```bash
@@ -29,6 +32,7 @@ cd backend
 npm i
 ```
 ### Build e Start
+<a id="backend-windows"></a>
 - windows
 ```bash
 npm run build:windows
@@ -38,11 +42,12 @@ npm run start
   ```bash
   make bsw
   ```
+<a id="backend-linux"></a>
 - Linux
 ```bash
-npm run build:windows
+npm run build:linux
 npm run start
 ```
   Se tiver o programa make, você pode apenas dar o comando `make bsw` para economizar teclas
   ```bash
-  make bsw
+  make bsl
