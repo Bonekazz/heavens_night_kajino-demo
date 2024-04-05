@@ -1,29 +1,31 @@
 # Heaven's Night Kajino
 
-  A web Silent Hill's Cassino house.
+  A web Silent Hill's Cassino house.<br>
+
+
 
 ## Summary
-  - [requisitos](#requisitos)
-#### [instalação:](#installation)
+- [requisitos](#Requisitos)
+- [instalação:](#Instalação)
   - [backend](#backend)
 
-
-
-
 ___
-<a id="requisitos"></a>
+
 ## Requisitos
   - [Node (já vem com npm)](https://nodejs.org/en/download/current)
-    
 
-<a id="installation"></a>
-## Installation
+
+
+
+
+
+## Instalação
 Clone a pasta do repositorio para algum diretório na sua maquina
 ```bash
 git clone https://github.com/Bonekazz/heavens_night_kajino-demo.git
 cd heavens_night_kajino-demo/
 ```
-<a id="backend"></a>
+
 ### Backend
 #### \#1 instale as dependências 
 ```bash
