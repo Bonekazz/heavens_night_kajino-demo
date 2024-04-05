@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "dev": "nodemon --exec ts-node-dev src/api.ts"
+    "dev": "nodemon --exec ts-node-dev src/api.ts",
+    "build": "npx tsc",
+    "start": "node ./dist/api.js"
   },
   "keywords": [],
   "author": "bonekazz",
