@@ -11,12 +11,14 @@
 
 ## Requisitos
   - [Node (já vem com npm)](https://nodejs.org/en/download/current)
+  - [Git (opcional)](https://git-scm.com/downloads)
 
 
 
 ## Instalação
-Clone a pasta do repositorio para algum diretório na sua maquina
+Importe a pasta do repositorio para algum diretório na sua maquina
 ```bash
+# usando git
 git clone https://github.com/Bonekazz/heavens_night_kajino-demo.git
 cd heavens_night_kajino-demo/
 ```
@@ -43,7 +45,7 @@ npm run start
 > [!TIP]
 > Se tiver o programa make instalado, você pode dar o comando `make` para economizar teclas no build e start
 > ```bash
-> #para windows
+> # para windows
 > make bsw
 > 
 > # para linux
